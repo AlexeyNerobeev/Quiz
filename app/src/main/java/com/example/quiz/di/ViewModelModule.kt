@@ -7,9 +7,9 @@ import org.koin.dsl.module
 
 val moduleVM = module {
     viewModel<SignInVM> {
-        SignInVM()
+        SignInVM(get())
     }
     viewModel<SignUpVM> {
-        SignUpVM()
+        SignUpVM(get())
     }
 }

@@ -1,10 +1,17 @@
 package com.example.quiz.feature_app.presentation.SignIn
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.quiz.feature_app.domain.usecase.SignUpUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class SignInVM: ViewModel() {
+class SignInVM(
+    private val signInUseCase: SignUpUseCase
+): ViewModel() {
     private val _state = mutableStateOf(SignInState())
     val state: State<SignInState> = _state
 
@@ -21,9 +28,17 @@ class SignInVM: ViewModel() {
                 )
             }
             is SignInEvent.NextPage -> {
-                _state.value = state.value.copy(
-                    isComplete = true
-                )
+                viewModelScope.launch(Dispatchers.IO) {
+                    try {
+                        signInUseCase.invoke(email = state.value.email,
+                            password = state.value.password)
+                        _state.value = state.value.copy(
+                            isComplete = true
+                        )
+                    } catch (ex: Exception){
+                        Log.e("supabase", ex.message.toString())
+                    }
+                }
             }
             is SignInEvent.VisualTransformation -> {
                 _state.value = state.value.copy(

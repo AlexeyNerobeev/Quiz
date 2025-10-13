@@ -5,13 +5,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.quiz.feature_app.domain.usecase.SIgnUpUseCase
-import com.example.quiz.feature_app.domain.usecase.SignInUseCase
+import com.example.quiz.feature_app.domain.usecase.SignUpUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignUpVM(
-    private val sIgnUpUseCase: SIgnUpUseCase
+    private val signUpUseCase: SignUpUseCase
 ): ViewModel() {
     private val _state = mutableStateOf(SignUpState())
     val state: State<SignUpState> = _state
@@ -36,7 +35,7 @@ class SignUpVM(
             is SignUpEvent.NextPage -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     try {
-                        sIgnUpUseCase.invoke(email = state.value.email, password = state.value.password)
+                        signUpUseCase.invoke(email = state.value.email, password = state.value.password)
                         _state.value = state.value.copy(
                             isComplete = true
                         )

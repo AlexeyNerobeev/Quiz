@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.quiz.feature_app.presentation.QuizList.QuizListScreen
 import com.example.quiz.feature_app.presentation.SignIn.SignInScreen
 import com.example.quiz.feature_app.presentation.SignUp.SignUpScreen
 import com.example.quiz.ui.theme.QuizTheme
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = NavRoutes.SignInScreen.route){
                 composable(NavRoutes.SignInScreen.route) { SignInScreen(navController) }
                 composable(NavRoutes.SignUpScreen.route) { SignUpScreen(navController)}
+                composable(NavRoutes.QuizListScreen.route) { QuizListScreen(navController) }
             }
         }
     }

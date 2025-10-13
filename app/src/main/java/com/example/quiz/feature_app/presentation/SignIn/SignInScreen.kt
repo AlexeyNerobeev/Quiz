@@ -20,6 +20,7 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,6 +45,11 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun SignInScreen(navController: NavController, vm: SignInVM = koinViewModel()) {
     val state = vm.state.value
+    LaunchedEffect(key1 = !state.isComplete) {
+        if(state.isComplete){
+            navController.navigate(NavRoutes.QuizListScreen.route)
+        }
+    }
     Scaffold(modifier = Modifier
         .fillMaxSize()) { innerPadding ->
         Column(modifier = Modifier
@@ -143,7 +149,7 @@ fun SignInScreen(navController: NavController, vm: SignInVM = koinViewModel()) {
                     }
                 )
                 Button(onClick = {
-
+                    vm.onEvent(SignInEvent.NextPage)
                 },
                     modifier = Modifier
                         .padding(top = 48.dp)
