@@ -39,3 +39,15 @@ val poppinsRegular = FontFamily(
         resId = R.font.poppins_regular
     )
 )
+
+val robotoRegular = FontFamily(
+    Font(
+        resId = R.font.roboto_regular
+    )
+)
+
+val robotoBlack = FontFamily(
+    Font(
+        resId = R.font.roboto_black
+    )
+)

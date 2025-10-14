@@ -5,12 +5,13 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quiz.feature_app.domain.usecase.SignInUseCase
 import com.example.quiz.feature_app.domain.usecase.SignUpUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignInVM(
-    private val signInUseCase: SignUpUseCase
+    private val signInUseCase: SignInUseCase
 ): ViewModel() {
     private val _state = mutableStateOf(SignInState())
     val state: State<SignInState> = _state
