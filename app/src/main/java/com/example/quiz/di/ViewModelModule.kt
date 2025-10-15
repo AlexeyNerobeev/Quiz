@@ -1,5 +1,6 @@
 package com.example.quiz.di
 
+import com.example.quiz.feature_app.presentation.AddQuiz.AddQuizVM
 import com.example.quiz.feature_app.presentation.SignIn.SignInVM
 import com.example.quiz.feature_app.presentation.SignUp.SignUpVM
 import org.koin.compose.viewmodel.dsl.viewModel
@@ -11,5 +12,8 @@ val moduleVM = module {
     }
     viewModel<SignUpVM> {
         SignUpVM(get())
+    }
+    viewModel<AddQuizVM> {
+        AddQuizVM()
     }
 }
