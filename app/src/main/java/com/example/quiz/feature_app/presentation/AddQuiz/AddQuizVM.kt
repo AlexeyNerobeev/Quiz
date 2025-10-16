@@ -1,5 +1,6 @@
 package com.example.quiz.feature_app.presentation.AddQuiz
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.isTraceInProgress
 import androidx.compose.runtime.mutableIntStateOf
@@ -21,7 +22,11 @@ class AddQuizVM: ViewModel() {
                 _state.value = state.value.copy(
                     questionsCount = event.value
                 )
-                val questionsCount = mutableIntStateOf(state.value.questionsCount.toInt())
+                try {
+                    val questionsCount = mutableIntStateOf(state.value.questionsCount.toInt())
+                } catch (ex: Exception){
+                    Log.e("toInt", ex.message.toString())
+                }
             }
             is AddQuizEvent.EnteredComplexity -> {
                 _state.value = state.value.copy(
@@ -57,7 +62,11 @@ class AddQuizVM: ViewModel() {
                 _state.value = state.value.copy(
                     correctAnswer = event.value
                 )
-                val correctAnswer = mutableIntStateOf(state.value.correctAnswer.toInt())
+                try {
+                    val correctAnswer = mutableIntStateOf(state.value.questionsCount.toInt())
+                } catch (ex: Exception){
+                    Log.e("toInt", ex.message.toString())
+                }
             }
             is AddQuizEvent.NextQuestion -> {
                 _state.value = state.value.copy(
@@ -69,6 +78,9 @@ class AddQuizVM: ViewModel() {
                 )
             }
             is AddQuizEvent.SaveQuiz -> {
+
+            }
+            is AddQuizEvent.CreateQuiz -> {
 
             }
         }

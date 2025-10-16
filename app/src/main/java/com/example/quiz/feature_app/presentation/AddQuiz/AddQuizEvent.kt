@@ -12,4 +12,5 @@ sealed class AddQuizEvent {
     data class EnteredCorrectAnswer(val value: String): AddQuizEvent()
     data object NextQuestion: AddQuizEvent()
     data object SaveQuiz: AddQuizEvent()
+    data object CreateQuiz: AddQuizEvent()
 }
