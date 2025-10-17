@@ -43,14 +43,16 @@ fun QuizListScreen(navController: NavController) {
                 .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically) {
-                Icon(painter = painterResource(R.drawable.back_icon),
-                    contentDescription = null,
-                    tint = Color.Unspecified,
+                IconButton(
+                    onClick = {
+                        navController.popBackStack()
+                    },
                     modifier = Modifier
-                        .background(Color.Transparent)
-                        .clickable{
-                            navController.popBackStack()
-                        })
+                        .background(Color.Transparent)){
+                    Icon(painter = painterResource(R.drawable.back_icon),
+                        contentDescription = null,
+                        tint = Color.Unspecified)
+                }
                 Text(text = "Викторины",
                     fontFamily = robotoBlack,
                     fontSize = 20.sp,
@@ -58,9 +60,7 @@ fun QuizListScreen(navController: NavController) {
                 )
                 IconButton(onClick = {
                     navController.navigate(NavRoutes.SearchScreen.route)
-                },
-                    modifier = Modifier
-                        .size(22.dp)) {
+                }) {
                     Icon(painterResource(R.drawable.circle_search_icon),
                         contentDescription = null,
                         tint = Color.Unspecified)

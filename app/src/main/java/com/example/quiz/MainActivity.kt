@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = NavRoutes.SignInScreen.route){
+            NavHost(navController = navController, startDestination = NavRoutes.ProfileScreen.route){
                 composable(NavRoutes.SignInScreen.route) { SignInScreen(navController) }
                 composable(NavRoutes.SignUpScreen.route) { SignUpScreen(navController)}
                 composable(NavRoutes.QuizListScreen.route) { QuizListScreen(navController) }

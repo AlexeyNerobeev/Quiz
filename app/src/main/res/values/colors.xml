@@ -11,4 +11,6 @@
     <color name="TextFieldColor">#FAF0E6</color>
     <color name="InsideColor">#CC7861</color>
     <color name="SignInButton">#F4B5A4</color>
+    <color name="IconSquareColor">#FAF0E6</color>
+    <color name="DarkColor">#4B4544</color>
 </resources>
