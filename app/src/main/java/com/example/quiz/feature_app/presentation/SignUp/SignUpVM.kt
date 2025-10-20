@@ -35,7 +35,7 @@ class SignUpVM(
             is SignUpEvent.NextPage -> {
                 viewModelScope.launch(Dispatchers.IO) {
                     try {
-                        signUpUseCase.invoke(email = state.value.email, password = state.value.password)
+                        signUpUseCase.invoke(email = state.value.email, password = state.value.password, name = state.value.name)
                         _state.value = state.value.copy(
                             isComplete = true
                         )

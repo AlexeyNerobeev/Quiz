@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -87,12 +88,14 @@ fun SearchScreen(navController: NavController) {
                     .fillMaxWidth()
                     .background(color = Color.Transparent,
                         shape = RoundedCornerShape(30.dp))
-                    .border(5.dp, color = colorResource(R.color.TextFieldColor)),
+                    .border(shape = RoundedCornerShape(30.dp),
+                        width = 1.dp,
+                        color = colorResource(R.color.InsideColor)),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedTextColor = colorResource(R.color.DarkColor),
                     unfocusedTextColor = colorResource(R.color.DarkColor),
-                    focusedBorderColor = colorResource(R.color.TextFieldColor),
-                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                    focusedBorderColor = colorResource(R.color.InsideColor),
+                    unfocusedBorderColor = colorResource(R.color.InsideColor),
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White
                 ),
@@ -142,7 +145,6 @@ fun SearchScreen(navController: NavController) {
                                     contentDescription = null,
                                     tint = Color.Unspecified,
                                     modifier = Modifier
-                                        .size(31.dp)
                                         .padding(start = 14.dp)
                                 )
                                 Text(
@@ -155,6 +157,10 @@ fun SearchScreen(navController: NavController) {
                                 )
                             }
                         }
+                    }
+                    item{
+                        Spacer(modifier = Modifier
+                            .height(100.dp))
                     }
                 }
             }
