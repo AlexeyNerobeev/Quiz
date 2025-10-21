@@ -18,6 +18,6 @@ val moduleVM = module {
         AddQuizVM()
     }
     viewModel<ProfileVM> {
-        ProfileVM(get())
+        ProfileVM(get(), get())
     }
 }

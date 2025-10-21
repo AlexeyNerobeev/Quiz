@@ -11,6 +11,7 @@ class ProfileRepositoryImpl: ProfileRepository {
     override suspend fun getProfile(): Profile {
         return supabase.postgrest["profile"].select(
             columns = Columns.list(
+                "id",
                 "name",
                 "email"
             )
@@ -26,5 +27,17 @@ class ProfileRepositoryImpl: ProfileRepository {
     private suspend fun getUserId(): String{
         supabase.auth.awaitInitialization()
         return supabase.auth.currentUserOrNull()?.id ?: ""
+    }
+
+    override suspend fun updateProfile(id: Int, name: String, email: String) {
+        val profile = Profile(name = name, email = email)
+        supabase.postgrest["profile"].update(profile){
+            filter {
+                and {
+                    eq("user_id", getUserId())
+                    eq("id", id)
+                }
+            }
+        }
     }
 }

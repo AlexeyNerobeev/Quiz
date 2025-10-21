@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.quiz.NavRoutes
 import com.example.quiz.R
+import com.example.quiz.common.AlertDialog
 import com.example.quiz.common.BottomNavigation
 import com.example.quiz.common.robotoBlack
 import com.example.quiz.common.robotoRegular
@@ -46,6 +47,11 @@ fun ProfileScreen(navController: NavController, vm: ProfileVM = koinViewModel())
     val state = vm.state.value
     LaunchedEffect(key1 = null) {
         vm.onEvent(ProfileEvent.GetProfile)
+    }
+    if(state.isUpdate){
+        AlertDialog("Профиль успешно обновлен!") {
+            vm.onEvent(ProfileEvent.ConfirmUpdate)
+        }
     }
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(
@@ -115,7 +121,7 @@ fun ProfileScreen(navController: NavController, vm: ProfileVM = koinViewModel())
                 .background(colorResource(R.color.IconSquareColor)),
                 contentAlignment = Alignment.Center){
                 Column {
-                    Text(text = "User Name",
+                    Text(text = state.name,
                         fontFamily = robotoBlack,
                         fontSize = 20.sp,
                         color = colorResource(R.color.DarkColor))
@@ -188,7 +194,7 @@ fun ProfileScreen(navController: NavController, vm: ProfileVM = koinViewModel())
                 )
                 Button(
                     onClick = {
-
+                        vm.onEvent(ProfileEvent.UpdateProfile)
                     },
                     modifier = Modifier
                         .padding(top = 50.dp)

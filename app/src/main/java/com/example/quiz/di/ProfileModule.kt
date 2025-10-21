@@ -3,6 +3,7 @@ package com.example.quiz.di
 import com.example.quiz.feature_app.data.repositoryImplementation.ProfileRepositoryImpl
 import com.example.quiz.feature_app.domain.repository.ProfileRepository
 import com.example.quiz.feature_app.domain.usecase.GetProfileUseCase
+import com.example.quiz.feature_app.domain.usecase.UpdateProfileUseCase
 import org.koin.dsl.module
 
 val moduleProfile = module{
@@ -11,5 +12,8 @@ val moduleProfile = module{
     }
     factory<GetProfileUseCase> {
         GetProfileUseCase(get())
+    }
+    factory<UpdateProfileUseCase> {
+        UpdateProfileUseCase(get())
     }
 }
