@@ -21,6 +21,7 @@ import com.example.quiz.feature_app.presentation.QuizList.QuizListScreen
 import com.example.quiz.feature_app.presentation.Search.SearchScreen
 import com.example.quiz.feature_app.presentation.SignIn.SignInScreen
 import com.example.quiz.feature_app.presentation.SignUp.SignUpScreen
+import com.example.quiz.feature_app.presentation.SolveQuizScreen
 import com.example.quiz.ui.theme.QuizTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,13 +34,14 @@ class MainActivity : ComponentActivity() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = NavRoutes.SignInScreen.route){
+            NavHost(navController = navController, startDestination = NavRoutes.SolveQuizScreen.route){
                 composable(NavRoutes.SignInScreen.route) { SignInScreen(navController) }
                 composable(NavRoutes.SignUpScreen.route) { SignUpScreen(navController)}
                 composable(NavRoutes.QuizListScreen.route) { QuizListScreen(navController) }
                 composable(NavRoutes.SearchScreen.route) { SearchScreen(navController) }
                 composable(NavRoutes.AddQuizScreen.route) { AddQuizScreen(navController) }
                 composable(NavRoutes.ProfileScreen.route) { ProfileScreen(navController) }
+                composable(NavRoutes.SolveQuizScreen.route) { SolveQuizScreen(navController) }
             }
         }
     }
