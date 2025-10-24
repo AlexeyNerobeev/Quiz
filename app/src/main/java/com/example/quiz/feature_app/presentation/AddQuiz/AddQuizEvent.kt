@@ -13,4 +13,5 @@ sealed class AddQuizEvent {
     data object NextQuestion: AddQuizEvent()
     data object SaveQuiz: AddQuizEvent()
     data object CreateQuiz: AddQuizEvent()
+    data object DropMenu: AddQuizEvent()
 }

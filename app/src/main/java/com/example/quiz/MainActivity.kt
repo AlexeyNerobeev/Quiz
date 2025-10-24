@@ -5,13 +5,6 @@ import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,8 +14,7 @@ import com.example.quiz.feature_app.presentation.QuizList.QuizListScreen
 import com.example.quiz.feature_app.presentation.Search.SearchScreen
 import com.example.quiz.feature_app.presentation.SignIn.SignInScreen
 import com.example.quiz.feature_app.presentation.SignUp.SignUpScreen
-import com.example.quiz.feature_app.presentation.SolveQuizScreen
-import com.example.quiz.ui.theme.QuizTheme
+import com.example.quiz.feature_app.presentation.SolveQuiz.SolveQuizScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         setContent {
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = NavRoutes.SolveQuizScreen.route){
+            NavHost(navController = navController, startDestination = NavRoutes.AddQuizScreen.route){
                 composable(NavRoutes.SignInScreen.route) { SignInScreen(navController) }
                 composable(NavRoutes.SignUpScreen.route) { SignUpScreen(navController)}
                 composable(NavRoutes.QuizListScreen.route) { QuizListScreen(navController) }

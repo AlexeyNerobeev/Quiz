@@ -18,4 +18,5 @@
     <color name="QuizGrayColor">#F4F3F6</color>
     <color name="ProgressColor">#31CD63</color>
     <color name="QuestionCountColor">#757575</color>
+    <color name="ContinueColor">#747475</color>
 </resources>

@@ -10,5 +10,6 @@ data class AddQuizState(
     val questionAnswer3: String = "",
     val questionAnswer4: String = "",
     val correctAnswer: String = "",
-    val isComplete: Boolean = false
+    val isComplete: Boolean = false,
+    val expanded: Boolean = false
 )

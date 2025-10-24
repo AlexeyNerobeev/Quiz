@@ -83,6 +83,11 @@ class AddQuizVM: ViewModel() {
             is AddQuizEvent.CreateQuiz -> {
 
             }
+            is AddQuizEvent.DropMenu -> {
+                _state.value = state.value.copy(
+                    expanded = !state.value.expanded
+                )
+            }
         }
     }
 }
