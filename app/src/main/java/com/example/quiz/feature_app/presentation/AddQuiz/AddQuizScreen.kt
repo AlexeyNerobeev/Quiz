@@ -1,5 +1,6 @@
 package com.example.quiz.feature_app.presentation.AddQuiz
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -63,302 +64,348 @@ fun AddQuizScreen(navController: NavController, vm: AddQuizVM = koinViewModel())
                 .padding(top = 20.dp)
                 .padding(horizontal = 24.dp)) {
                 item {
-                    Text(text = "Название викторины:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular
-                    )
-                    OutlinedTextField(value = state.title,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredQuizTitle(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Количество вопросов:",
-                        fontFamily = robotoRegular,
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.questionsCount,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredQuestionsCount(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true,
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                    )
-                    Text(text = "Сложность:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp)
-                    )
-                    Box(modifier = Modifier
-                        .padding(top = 8.dp)
-                        .fillMaxWidth()
-                        .height(55.dp)
-                        .background(color = colorResource(R.color.TextFieldColor),
-                            shape = RoundedCornerShape(30.dp))
-                        .clickable{
-                            vm.onEvent(AddQuizEvent.DropMenu)
-                        },
-                        contentAlignment = Alignment.CenterStart){
-                        Text(text = state.complexity,
-                            color = Color.Black,
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp,
+                    AnimatedVisibility(visible = state.createQuiz) {
+                        Column(
                             modifier = Modifier
-                                .padding(start = 20.dp))
-                        DropdownMenu(
-                            expanded = state.expanded,
-                            onDismissRequest = {
-                                vm.onEvent(AddQuizEvent.DropMenu)
-                            },
-                            containerColor = colorResource(R.color.TextFieldColor)
+                                .fillMaxWidth()
                         ) {
-                            Text(text = "Легко",
+                            Text(
+                                text = "Название викторины:",
                                 color = Color.Black,
-                                fontFamily = robotoRegular,
-                                fontSize = 14.sp,
-                                modifier = Modifier
-                                    .padding(10.dp)
-                                    .clickable{
-                                        vm.onEvent(AddQuizEvent.EnteredComplexity("Легко"))
-                                    }
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular
                             )
-                            Text(text = "Средне",
-                                color = Color.Black,
-                                fontFamily = robotoRegular,
-                                fontSize = 14.sp,
+                            OutlinedTextField(
+                                value = state.title,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredQuizTitle(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
                                 modifier = Modifier
-                                    .padding(10.dp)
-                                    .clickable{
-                                        vm.onEvent(AddQuizEvent.EnteredComplexity("Средне"))
-                                    }
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
                             )
-                            Text(text = "Сложно",
-                                color = Color.Black,
+                            Text(
+                                text = "Количество вопросов:",
                                 fontFamily = robotoRegular,
-                                fontSize = 14.sp,
+                                color = Color.Black,
+                                fontSize = 15.sp,
                                 modifier = Modifier
-                                    .padding(10.dp)
-                                    .clickable{
-                                        vm.onEvent(AddQuizEvent.EnteredComplexity("Сложно"))
-                                    }
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.questionsCount,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredQuestionsCount(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                            )
+                            Text(
+                                text = "Сложность:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp)
+                                    .background(
+                                        color = colorResource(R.color.TextFieldColor),
+                                        shape = RoundedCornerShape(30.dp)
+                                    )
+                                    .clickable {
+                                        vm.onEvent(AddQuizEvent.DropMenu)
+                                    },
+                                contentAlignment = Alignment.CenterStart
+                            ) {
+                                Text(
+                                    text = state.complexity,
+                                    color = Color.Black,
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp,
+                                    modifier = Modifier
+                                        .padding(start = 20.dp)
+                                )
+                                DropdownMenu(
+                                    expanded = state.expanded,
+                                    onDismissRequest = {
+                                        vm.onEvent(AddQuizEvent.DropMenu)
+                                    },
+                                    containerColor = colorResource(R.color.TextFieldColor)
+                                ) {
+                                    Text(
+                                        text = "Легко",
+                                        color = Color.Black,
+                                        fontFamily = robotoRegular,
+                                        fontSize = 14.sp,
+                                        modifier = Modifier
+                                            .padding(10.dp)
+                                            .clickable {
+                                                vm.onEvent(AddQuizEvent.EnteredComplexity("Легко"))
+                                                vm.onEvent(AddQuizEvent.DropMenu)
+                                            }
+                                    )
+                                    Text(
+                                        text = "Средне",
+                                        color = Color.Black,
+                                        fontFamily = robotoRegular,
+                                        fontSize = 14.sp,
+                                        modifier = Modifier
+                                            .padding(10.dp)
+                                            .clickable {
+                                                vm.onEvent(AddQuizEvent.EnteredComplexity("Средне"))
+                                                vm.onEvent(AddQuizEvent.DropMenu)
+                                            }
+                                    )
+                                    Text(
+                                        text = "Сложно",
+                                        color = Color.Black,
+                                        fontFamily = robotoRegular,
+                                        fontSize = 14.sp,
+                                        modifier = Modifier
+                                            .padding(10.dp)
+                                            .clickable {
+                                                vm.onEvent(AddQuizEvent.EnteredComplexity("Сложно"))
+                                                vm.onEvent(AddQuizEvent.DropMenu)
+                                            }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    AnimatedVisibility(visible = state.createQuestion) {
+                        Column(modifier = Modifier
+                            .fillMaxWidth()) {
+                            Text(
+                                text = "Название вопроса:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular
+                            )
+                            OutlinedTextField(
+                                value = state.questionTitle,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredQuestionTitle(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
+                            )
+                            Text(
+                                text = "Ответ 1:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.questionAnswer1,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredAnswer1(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
+                            )
+                            Text(
+                                text = "Ответ 2:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.questionAnswer2,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredAnswer2(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
+                            )
+                            Text(
+                                text = "Ответ 3:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.questionAnswer1,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredAnswer3(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
+                            )
+                            Text(
+                                text = "Ответ 4:",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.questionAnswer4,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredAnswer1(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
+                            )
+                            Text(
+                                text = "Номер правильного ответа(число):",
+                                color = Color.Black,
+                                fontSize = 15.sp,
+                                fontFamily = robotoRegular,
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                            )
+                            OutlinedTextField(
+                                value = state.correctAnswer,
+                                onValueChange = {
+                                    vm.onEvent(AddQuizEvent.EnteredCorrectAnswer(it))
+                                },
+                                shape = RoundedCornerShape(30.dp),
+                                modifier = Modifier
+                                    .padding(top = 8.dp)
+                                    .fillMaxWidth()
+                                    .height(55.dp),
+                                colors = OutlinedTextFieldDefaults.colors(
+                                    focusedTextColor = Color.Black,
+                                    unfocusedTextColor = Color.Black,
+                                    focusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedBorderColor = colorResource(R.color.TextFieldColor),
+                                    focusedContainerColor = colorResource(R.color.TextFieldColor),
+                                    unfocusedContainerColor = colorResource(R.color.TextFieldColor)
+                                ),
+                                textStyle = TextStyle(
+                                    fontFamily = robotoRegular,
+                                    fontSize = 16.sp
+                                ),
+                                singleLine = true
                             )
                         }
                     }
-                    Text(text = "Название вопроса:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 40.dp))
-                    OutlinedTextField(value = state.questionTitle,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredQuestionTitle(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Ответ 1:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.questionAnswer1,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredAnswer1(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Ответ 2:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.questionAnswer2,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredAnswer2(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Ответ 3:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.questionAnswer1,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredAnswer3(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Ответ 4:",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.questionAnswer4,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredAnswer1(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
-                    Text(text = "Номер правильного ответа(число):",
-                        color = Color.Black,
-                        fontSize = 15.sp,
-                        fontFamily = robotoRegular,
-                        modifier = Modifier
-                            .padding(top = 10.dp))
-                    OutlinedTextField(value = state.correctAnswer,
-                        onValueChange = {
-                            vm.onEvent(AddQuizEvent.EnteredCorrectAnswer(it))
-                        },
-                        shape = RoundedCornerShape(30.dp),
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .fillMaxWidth()
-                            .height(55.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedBorderColor = colorResource(R.color.TextFieldColor),
-                            unfocusedBorderColor = colorResource(R.color.TextFieldColor),
-                            focusedContainerColor = colorResource(R.color.TextFieldColor),
-                            unfocusedContainerColor = colorResource(R.color.TextFieldColor)
-                        ),
-                        textStyle = TextStyle(
-                            fontFamily = robotoRegular,
-                            fontSize = 16.sp
-                        ),
-                        singleLine = true
-                    )
                     Button(onClick = {
-
+                        vm.onEvent(AddQuizEvent.CreateQuiz)
                     },
                         modifier = Modifier
                             .padding(top = 20.dp)
@@ -370,7 +417,7 @@ fun AddQuizScreen(navController: NavController, vm: AddQuizVM = koinViewModel())
                             containerColor = colorResource(R.color.SignInButton)
                         ),
                         shape = RoundedCornerShape(30.dp)) {
-                        Text("Сохранить вопрос",
+                        Text(state.buttonTextState,
                             color = colorResource(R.color.InsideColor),
                             fontFamily = robotoBlack,
                             fontSize = 20.sp)

@@ -1,6 +1,7 @@
 package com.example.quiz.feature_app.presentation.AddQuiz
 
 data class AddQuizState(
+    val quizId: Int = 0,
     val complexity: String = "",
     val questionsCount: String = "",
     val title: String = "",
@@ -11,5 +12,8 @@ data class AddQuizState(
     val questionAnswer4: String = "",
     val correctAnswer: String = "",
     val isComplete: Boolean = false,
-    val expanded: Boolean = false
+    val expanded: Boolean = false,
+    val createQuiz: Boolean = true,
+    val createQuestion: Boolean = false,
+    val buttonTextState: String = "Создать викторину",
 )

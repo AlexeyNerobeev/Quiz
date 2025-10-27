@@ -3,6 +3,7 @@ package com.example.quiz
 import android.app.Application
 import com.example.quiz.di.moduleAuth
 import com.example.quiz.di.moduleProfile
+import com.example.quiz.di.moduleQuiz
 import com.example.quiz.di.moduleVM
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,7 +18,7 @@ class App: Application() {
             androidContext(applicationContext)
             androidLogger(level = Level.DEBUG)
             modules(
-                moduleVM, moduleAuth, moduleProfile
+                moduleVM, moduleAuth, moduleProfile, moduleQuiz
             )
         }
     }

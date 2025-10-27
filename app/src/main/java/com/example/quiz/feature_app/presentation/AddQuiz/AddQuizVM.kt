@@ -6,8 +6,14 @@ import androidx.compose.runtime.isTraceInProgress
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.quiz.feature_app.domain.usecase.CreateQuizUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class AddQuizVM: ViewModel() {
+class AddQuizVM(
+    private val createQuizUseCase: CreateQuizUseCase
+): ViewModel() {
     private val _state = mutableStateOf(AddQuizState())
     val state: State<AddQuizState> = _state
 
@@ -22,11 +28,6 @@ class AddQuizVM: ViewModel() {
                 _state.value = state.value.copy(
                     questionsCount = event.value
                 )
-                try {
-                    val questionsCount = mutableIntStateOf(state.value.questionsCount.toInt())
-                } catch (ex: Exception){
-                    Log.e("toInt", ex.message.toString())
-                }
             }
             is AddQuizEvent.EnteredComplexity -> {
                 _state.value = state.value.copy(
@@ -81,7 +82,20 @@ class AddQuizVM: ViewModel() {
 
             }
             is AddQuizEvent.CreateQuiz -> {
-
+                viewModelScope.launch(Dispatchers.IO) {
+                    try {
+                        _state.value = state.value.copy(
+                            quizId = createQuizUseCase.invoke(title = state.value.title,
+                                complexity = state.value.complexity,
+                                questionsCount = state.value.questionsCount.toInt()),
+                            createQuiz = false,
+                            createQuestion = true,
+                            buttonTextState = "Сохранить вопрос"
+                        )
+                    } catch (ex: Exception){
+                        Log.e("supabase", ex.message.toString())
+                    }
+                }
             }
             is AddQuizEvent.DropMenu -> {
                 _state.value = state.value.copy(

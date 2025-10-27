@@ -15,7 +15,7 @@ val moduleVM = module {
         SignUpVM(get())
     }
     viewModel<AddQuizVM> {
-        AddQuizVM()
+        AddQuizVM(get())
     }
     viewModel<ProfileVM> {
         ProfileVM(get(), get())
