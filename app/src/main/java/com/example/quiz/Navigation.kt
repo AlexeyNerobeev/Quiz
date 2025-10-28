@@ -8,4 +8,5 @@ sealed class NavRoutes(val route: String) {
     data object AddQuizScreen: NavRoutes("AddQuizScreen")
     data object ProfileScreen: NavRoutes("ProfileScreen")
     data object SolveQuizScreen: NavRoutes("SolveQuizScreen")
+    data object LeaderBoardScreen: NavRoutes("LeaderBoardScreen")
 }

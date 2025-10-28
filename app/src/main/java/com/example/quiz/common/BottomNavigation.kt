@@ -61,11 +61,11 @@ fun BottomNavigation(navController: NavController, activityNumber: Int) {
                 }
                 IconButton(onClick = {
                     if (activityNumber != 2) {
-                        navController.navigate(NavRoutes.QuizListScreen.route)
+                        navController.navigate(NavRoutes.SearchScreen.route)
                     }
                 }) {
                     Icon(
-                        painter = painterResource(R.drawable.home_icon),
+                        painter = painterResource(R.drawable.search_icon),
                         contentDescription = null,
                         tint = if(activityNumber == 2){
                             Color.Black
@@ -76,11 +76,11 @@ fun BottomNavigation(navController: NavController, activityNumber: Int) {
                 }
                 IconButton(onClick = {
                     if (activityNumber != 3) {
-                        navController.navigate(NavRoutes.SearchScreen.route)
+                        navController.navigate(NavRoutes.QuizListScreen.route)
                     }
                 }) {
                     Icon(
-                        painter = painterResource(R.drawable.search_icon),
+                        painter = painterResource(R.drawable.home_icon),
                         contentDescription = null,
                         tint = if(activityNumber == 3){
                             Color.Black
@@ -91,13 +91,28 @@ fun BottomNavigation(navController: NavController, activityNumber: Int) {
                 }
                 IconButton(onClick = {
                     if (activityNumber != 4) {
+                        navController.navigate(NavRoutes.LeaderBoardScreen.route)
+                    }
+                }) {
+                    Icon(
+                        painter = painterResource(R.drawable.leaders_icon),
+                        contentDescription = null,
+                        tint = if(activityNumber == 4){
+                            Color.Black
+                        } else{
+                            Color.Unspecified
+                        }
+                    )
+                }
+                IconButton(onClick = {
+                    if (activityNumber != 5) {
                         navController.navigate(NavRoutes.ProfileScreen.route)
                     }
                 }) {
                     Icon(
                         painter = painterResource(R.drawable.profile_icon),
                         contentDescription = null,
-                        tint = if(activityNumber == 4){
+                        tint = if(activityNumber == 5){
                             Color.Black
                         } else{
                             Color.Unspecified

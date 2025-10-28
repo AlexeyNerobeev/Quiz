@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.quiz.feature_app.presentation.AddQuiz.AddQuizScreen
+import com.example.quiz.feature_app.presentation.LeaderBoard.LeaderBoardScreen
 import com.example.quiz.feature_app.presentation.Profile.ProfileScreen
 import com.example.quiz.feature_app.presentation.QuizList.QuizListScreen
 import com.example.quiz.feature_app.presentation.Search.SearchScreen
@@ -34,6 +35,7 @@ class MainActivity : ComponentActivity() {
                 composable(NavRoutes.AddQuizScreen.route) { AddQuizScreen(navController) }
                 composable(NavRoutes.ProfileScreen.route) { ProfileScreen(navController) }
                 composable(NavRoutes.SolveQuizScreen.route) { SolveQuizScreen(navController) }
+                composable(NavRoutes.LeaderBoardScreen.route) { LeaderBoardScreen(navController) }
             }
         }
     }

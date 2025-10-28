@@ -171,6 +171,6 @@ fun SearchScreen(navController: NavController) {
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        BottomNavigation(navController, 3)
+        BottomNavigation(navController, 2)
     }
 }

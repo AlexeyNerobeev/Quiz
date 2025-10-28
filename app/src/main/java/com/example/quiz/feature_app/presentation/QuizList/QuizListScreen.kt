@@ -81,6 +81,6 @@ fun QuizListScreen(navController: NavController) {
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        BottomNavigation(navController, 2)
+        BottomNavigation(navController, 3)
     }
 }

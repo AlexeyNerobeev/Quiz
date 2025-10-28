@@ -224,6 +224,6 @@ fun ProfileScreen(navController: NavController, vm: ProfileVM = koinViewModel())
             .fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-        BottomNavigation(navController, 4)
+        BottomNavigation(navController, 5)
     }
 }
